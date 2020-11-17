@@ -27,7 +27,8 @@
       }
     ],
     "prettier/prettier": "error",
-    "class-methods-use-this": "off"
+    "class-methods-use-this": "off",
+    "no-plusplus": "off"
   },
   "settings": {
     "import/resolver": {
