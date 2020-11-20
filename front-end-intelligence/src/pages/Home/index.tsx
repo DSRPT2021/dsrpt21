@@ -1,10 +1,8 @@
-import { shade } from 'polished';
 import React, { useEffect, useState } from 'react';
 
 import Header from '../../components/Header';
 import { getTokenUserLogged } from '../../helpers/auth';
 import api from '../../services/api';
-import { theme } from '../../styles/theme';
 
 import { Container, HospitalItem } from './styles';
 
