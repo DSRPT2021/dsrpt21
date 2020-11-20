@@ -1,9 +1,13 @@
 import mongoose from 'mongoose';
+import dotenv from 'dotenv-safe';
 
-export default function connect(): Promise<typeof mongoose> {
-  return mongoose.connect('mongodb://localhost:27017/MEDNESS', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false,
-  });
-}
+dotenv.config();
+
+mongoose.connect('mongodb://localhost:27017/DSRPT21', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useFindAndModify: false,
+});
+mongoose.Promise = global.Promise;
+
+export default mongoose;

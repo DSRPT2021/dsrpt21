@@ -5,6 +5,8 @@ import { BrowserRouter } from 'react-router-dom';
 
 import { theme, GlobalStyle, Theme } from './styles/theme';
 
+import { AuthProvider } from './hooks/AuthContext';
+
 import Routes from './routes';
 
 const App: React.FC = () => {
@@ -13,7 +15,9 @@ const App: React.FC = () => {
 			<ThemeProvider theme={theme}>
 				<Global<Theme> styles={GlobalStyle} />
 				<BrowserRouter>
-					<Routes />
+					<AuthProvider>
+						<Routes />
+					</AuthProvider>
 				</BrowserRouter>
 			</ThemeProvider>
 		</>

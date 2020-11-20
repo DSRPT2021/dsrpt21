@@ -11,3 +11,10 @@ export const Container = styled.div`
 		margin-top: 50px;
 	}
 `;
+
+export const ErrorMessage = styled.p`
+	width: 90%;
+	max-width: 900px;
+	margin: 30px auto 0;
+	color: #c00;
+`;

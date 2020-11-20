@@ -1,29 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useCallback } from 'react';
 
-import { useHistory } from 'react-router-dom';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
-
-import { Container } from './styles';
-import { isAuthenticated, setUserLogged } from '../../helpers/auth';
 import Header from '../../components/Header';
 
+import { useAuth } from '../../hooks/AuthContext';
+
+import { Container, ErrorMessage } from './styles';
+
 const LoginPage: React.FC = () => {
-	const history = useHistory();
+	const { signIn, errorAuth } = useAuth();
 
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 
-	useEffect(() => {
-		if (isAuthenticated()) {
-			history.push('/');
-		}
-	});
-
-	const handleSubmit = (): void => {
-		setUserLogged({ id: '123', email, password });
-		history.push('/');
-	};
+	const handleSubmit = useCallback(async () => {
+		await signIn({ email, password });
+	}, [signIn, email, password]);
 
 	return (
 		<Container>
@@ -47,6 +40,8 @@ const LoginPage: React.FC = () => {
 				/>
 				<Button onClick={handleSubmit}>Entrar</Button>
 			</form>
+
+			{errorAuth && <ErrorMessage>{errorAuth}</ErrorMessage>}
 		</Container>
 	);
 };

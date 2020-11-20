@@ -1,19 +1,18 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { FiLogOut } from 'react-icons/fi';
-import { useHistory } from 'react-router-dom';
 
-import { isAuthenticated, logoutUser } from '../../helpers/auth';
+import { isAuthenticated } from '../../helpers/auth';
 
 import Logo from '../../assets/images/Logo.png';
 
 import { Container } from './styles';
+import { useAuth } from '../../hooks/AuthContext';
 
 const Header: React.FC = () => {
-	const history = useHistory();
+	const { signOut } = useAuth();
 
 	const handleLogout = (): void => {
-		logoutUser();
-		history.push('/login');
+		signOut();
 	};
 
 	return (
